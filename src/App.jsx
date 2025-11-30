@@ -1154,10 +1154,8 @@ export default function App() {
                               key={`pos-${i}`}
                               cx={(i / (positiveData.length - 1)) * chartWidth}
                               cy={getY(v)}
-                              r="4"
-                              fill="#ffffff"
-                              stroke="#16a34a"
-                              strokeWidth="2"
+                              r="1.5"
+                              fill="#16a34a"
                             />
                           ))}
                           
@@ -1167,10 +1165,8 @@ export default function App() {
                               key={`neu-${i}`}
                               cx={(i / (neutralData.length - 1)) * chartWidth}
                               cy={getY(v)}
-                              r="3"
-                              fill="#ffffff"
-                              stroke="#ca8a04"
-                              strokeWidth="2"
+                              r="1.5"
+                              fill="#ca8a04"
                             />
                           ))}
                           
@@ -1180,10 +1176,8 @@ export default function App() {
                               key={`neg-${i}`}
                               cx={(i / (negativeData.length - 1)) * chartWidth}
                               cy={getY(v)}
-                              r="3"
-                              fill="#ffffff"
-                              stroke="#dc2626"
-                              strokeWidth="2"
+                              r="1.5"
+                              fill="#dc2626"
                             />
                           ))}
                         </svg>
