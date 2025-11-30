@@ -600,21 +600,28 @@ export default function App() {
             justifyContent: 'space-between',
           }}
         >
-          <button
-            onClick={goBackToPortfolio}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#fff',
-              fontSize: 14,
-              cursor: 'pointer',
-            }}
-          >
-            ← Back
-          </button>
-          <h1 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700 }}>
-            {selectedCelebrity.name} — Dashboard
-          </h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <button
+              onClick={goBackToPortfolio}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#fff',
+                fontSize: 14,
+                cursor: 'pointer',
+              }}
+            >
+              ← Back
+            </button>
+            <img
+              src="https://media.orbisdata.ai/assets/images/grip-logo.png"
+              alt="GRIP Logo"
+              style={{ height: 32, width: 'auto' }}
+            />
+            <h1 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700 }}>
+              {selectedCelebrity.name} — Dashboard
+            </h1>
+          </div>
           <div style={{ display: 'flex', gap: 8 }}>
             <button
               type="button"
@@ -1892,21 +1899,28 @@ export default function App() {
             justifyContent: 'space-between',
           }}
         >
-          <button
-            onClick={goBackToPortfolio}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#fff',
-              fontSize: 14,
-              cursor: 'pointer',
-            }}
-          >
-            ← Back
-          </button>
-          <h1 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700 }}>
-            Celebrity Comparison
-          </h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <button
+              onClick={goBackToPortfolio}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#fff',
+                fontSize: 14,
+                cursor: 'pointer',
+              }}
+            >
+              ← Back
+            </button>
+            <img
+              src="https://media.orbisdata.ai/assets/images/grip-logo.png"
+              alt="GRIP Logo"
+              style={{ height: 32, width: 'auto' }}
+            />
+            <h1 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700 }}>
+              Celebrity Comparison
+            </h1>
+          </div>
           <div />
         </header>
 
@@ -2006,20 +2020,27 @@ export default function App() {
           boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
         }}
       >
-        <div>
-          <h1 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700 }}>
-            GRIP — Global Reputation Information Platform
-          </h1>
-          <p
-            style={{
-              margin: 0,
-              marginTop: 4,
-              fontSize: 12,
-              opacity: 0.9,
-            }}
-          >
-            Celebrity Reputation Command Center
-          </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <img
+            src="https://media.orbisdata.ai/assets/images/grip-logo.png"
+            alt="GRIP Logo"
+            style={{ height: 40, width: 'auto' }}
+          />
+          <div>
+            <h1 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700 }}>
+              GRIP — Global Reputation Information Platform
+            </h1>
+            <p
+              style={{
+                margin: 0,
+                marginTop: 4,
+                fontSize: 12,
+                opacity: 0.9,
+              }}
+            >
+              Celebrity Reputation Command Center
+            </p>
+          </div>
         </div>
         <div className="header-buttons">
           <button
