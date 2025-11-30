@@ -971,56 +971,279 @@ export default function App() {
             ))}
           </div>
 
-          {/* 7‑Day Trend Chart (simple bar chart) */}
+          {/* 7‑Day Trend Chart (enhanced multi-line chart) */}
           <div style={{ marginTop: 40 }}>
-            <h3
-              style={{
-                fontSize: '1.15rem',
-                fontWeight: 700,
-                marginBottom: 12,
-              }}
-            >
-              Sentiment Trend — Last 7 Days
-            </h3>
             <div
               style={{
-                background: '#ffffff',
-                borderRadius: 12,
-                padding: 20,
-                border: '1px solid #e5e7eb',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: 16,
               }}
             >
-              <div
+              <h3
                 style={{
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  gap: 14,
-                  height: 120,
+                  fontSize: '1.15rem',
+                  fontWeight: 700,
+                  margin: 0,
                 }}
               >
-                {[68, 72, 75, 71, 78, 74, 72].map((v, i) => (
-                  <div key={i} style={{ textAlign: 'center', flex: 1 }}>
+                Sentiment Trend — Last 7 Days
+              </h3>
+              <div style={{ display: 'flex', gap: 16, fontSize: 12 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#16a34a' }} />
+                  <span style={{ color: '#374151' }}>Positive</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#ca8a04' }} />
+                  <span style={{ color: '#374151' }}>Neutral</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#dc2626' }} />
+                  <span style={{ color: '#374151' }}>Negative</span>
+                </div>
+              </div>
+            </div>
+            <div
+              style={{
+                background: 'linear-gradient(180deg, #ffffff 0%, #f9fafb 100%)',
+                borderRadius: 16,
+                padding: 24,
+                border: '1px solid #e5e7eb',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.04)',
+              }}
+            >
+              {(() => {
+                const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                const positiveData = [68, 72, 75, 71, 78, 74, 72];
+                const neutralData = [18, 16, 14, 17, 12, 15, 16];
+                const negativeData = [14, 12, 11, 12, 10, 11, 12];
+                const chartHeight = 180;
+                const chartWidth = 100;
+                
+                const getY = (value) => chartHeight - (value / 100) * chartHeight;
+                
+                const createPath = (data) => {
+                  return data.map((v, i) => {
+                    const x = (i / (data.length - 1)) * chartWidth;
+                    const y = getY(v);
+                    return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
+                  }).join(' ');
+                };
+                
+                const createAreaPath = (data) => {
+                  const linePath = data.map((v, i) => {
+                    const x = (i / (data.length - 1)) * chartWidth;
+                    const y = getY(v);
+                    return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
+                  }).join(' ');
+                  return `${linePath} L 100 ${chartHeight} L 0 ${chartHeight} Z`;
+                };
+
+                return (
+                  <div style={{ position: 'relative' }}>
+                    {/* Y-axis labels */}
                     <div
                       style={{
-                        height: v,
-                        width: 14,
-                        margin: '0 auto',
-                        background: '#3b82f6',
-                        borderRadius: 4,
-                      }}
-                    />
-                    <div
-                      style={{
+                        position: 'absolute',
+                        left: 0,
+                        top: 0,
+                        bottom: 30,
+                        width: 35,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
                         fontSize: 10,
-                        marginTop: 6,
-                        color: '#4b5563',
+                        color: '#9ca3af',
                       }}
                     >
-                      Day {i + 1}
+                      <span>100%</span>
+                      <span>75%</span>
+                      <span>50%</span>
+                      <span>25%</span>
+                      <span>0%</span>
+                    </div>
+                    
+                    {/* Chart area */}
+                    <div style={{ marginLeft: 40 }}>
+                      {/* Grid lines */}
+                      <div style={{ position: 'relative', height: chartHeight }}>
+                        {[0, 25, 50, 75, 100].map((line) => (
+                          <div
+                            key={line}
+                            style={{
+                              position: 'absolute',
+                              left: 0,
+                              right: 0,
+                              top: `${100 - line}%`,
+                              borderBottom: line === 0 ? '1px solid #d1d5db' : '1px dashed #e5e7eb',
+                            }}
+                          />
+                        ))}
+                        
+                        {/* SVG Chart */}
+                        <svg
+                          viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+                          preserveAspectRatio="none"
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                          }}
+                        >
+                          <defs>
+                            <linearGradient id="positiveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" stopColor="#16a34a" stopOpacity="0.3" />
+                              <stop offset="100%" stopColor="#16a34a" stopOpacity="0.02" />
+                            </linearGradient>
+                            <linearGradient id="neutralGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" stopColor="#ca8a04" stopOpacity="0.2" />
+                              <stop offset="100%" stopColor="#ca8a04" stopOpacity="0.02" />
+                            </linearGradient>
+                            <linearGradient id="negativeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" stopColor="#dc2626" stopOpacity="0.2" />
+                              <stop offset="100%" stopColor="#dc2626" stopOpacity="0.02" />
+                            </linearGradient>
+                            <filter id="glow">
+                              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                              <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                              </feMerge>
+                            </filter>
+                          </defs>
+                          
+                          {/* Area fills */}
+                          <path d={createAreaPath(positiveData)} fill="url(#positiveGradient)" />
+                          <path d={createAreaPath(neutralData)} fill="url(#neutralGradient)" />
+                          <path d={createAreaPath(negativeData)} fill="url(#negativeGradient)" />
+                          
+                          {/* Lines */}
+                          <path
+                            d={createPath(positiveData)}
+                            fill="none"
+                            stroke="#16a34a"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            filter="url(#glow)"
+                          />
+                          <path
+                            d={createPath(neutralData)}
+                            fill="none"
+                            stroke="#ca8a04"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d={createPath(negativeData)}
+                            fill="none"
+                            stroke="#dc2626"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          
+                          {/* Data points for positive line */}
+                          {positiveData.map((v, i) => (
+                            <circle
+                              key={`pos-${i}`}
+                              cx={(i / (positiveData.length - 1)) * chartWidth}
+                              cy={getY(v)}
+                              r="4"
+                              fill="#ffffff"
+                              stroke="#16a34a"
+                              strokeWidth="2"
+                            />
+                          ))}
+                          
+                          {/* Data points for neutral line */}
+                          {neutralData.map((v, i) => (
+                            <circle
+                              key={`neu-${i}`}
+                              cx={(i / (neutralData.length - 1)) * chartWidth}
+                              cy={getY(v)}
+                              r="3"
+                              fill="#ffffff"
+                              stroke="#ca8a04"
+                              strokeWidth="2"
+                            />
+                          ))}
+                          
+                          {/* Data points for negative line */}
+                          {negativeData.map((v, i) => (
+                            <circle
+                              key={`neg-${i}`}
+                              cx={(i / (negativeData.length - 1)) * chartWidth}
+                              cy={getY(v)}
+                              r="3"
+                              fill="#ffffff"
+                              stroke="#dc2626"
+                              strokeWidth="2"
+                            />
+                          ))}
+                        </svg>
+                      </div>
+                      
+                      {/* X-axis labels */}
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          marginTop: 12,
+                          fontSize: 11,
+                          color: '#6b7280',
+                          fontWeight: 500,
+                        }}
+                      >
+                        {days.map((day, i) => (
+                          <div key={day} style={{ textAlign: 'center', flex: 1 }}>
+                            <div>{day}</div>
+                            <div style={{ fontSize: 10, color: '#9ca3af', marginTop: 2 }}>
+                              {positiveData[i]}%
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Summary stats */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        marginTop: 20,
+                        paddingTop: 16,
+                        borderTop: '1px solid #e5e7eb',
+                      }}
+                    >
+                      <div style={{ textAlign: 'center' }}>
+                        <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 4 }}>Weekly Avg</div>
+                        <div style={{ fontSize: 18, fontWeight: 700, color: '#16a34a' }}>
+                          {Math.round(positiveData.reduce((a, b) => a + b, 0) / positiveData.length)}%
+                        </div>
+                        <div style={{ fontSize: 10, color: '#16a34a' }}>Positive</div>
+                      </div>
+                      <div style={{ textAlign: 'center' }}>
+                        <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 4 }}>Peak Day</div>
+                        <div style={{ fontSize: 18, fontWeight: 700, color: '#3b82f6' }}>Friday</div>
+                        <div style={{ fontSize: 10, color: '#3b82f6' }}>78% positive</div>
+                      </div>
+                      <div style={{ textAlign: 'center' }}>
+                        <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 4 }}>Trend</div>
+                        <div style={{ fontSize: 18, fontWeight: 700, color: '#16a34a', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+                          <span>↑</span> +4%
+                        </div>
+                        <div style={{ fontSize: 10, color: '#16a34a' }}>vs last week</div>
+                      </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                );
+              })()}
             </div>
           </div>
 
