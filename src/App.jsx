@@ -183,6 +183,160 @@ const sampleVideos = [
     sentiment: 'negative',
     url: 'https://www.reddit.com/r/IndiaCricket/comments/1i0hisj/robin_uthappa_virat_kohli_played_dirty_politics/',
   },
+  {
+    id: 4,
+    title: 'Kohli smashes century in style',
+    source: 'X',
+    sentiment: 'positive',
+    url: 'https://x.com/BCCI/status/example1',
+  },
+  {
+    id: 5,
+    title: 'Behind the scenes training session',
+    source: 'Instagram',
+    sentiment: 'positive',
+    url: 'https://www.instagram.com/p/example2/',
+  },
+  {
+    id: 6,
+    title: 'Press conference highlights',
+    source: 'YouTube',
+    sentiment: 'neutral',
+    url: 'https://youtube.com/watch?v=example3',
+  },
+  {
+    id: 7,
+    title: 'Fan reactions compilation',
+    source: 'X',
+    sentiment: 'positive',
+    url: 'https://x.com/CricketFans/status/example4',
+  },
+  {
+    id: 8,
+    title: 'Kohli fitness routine reveal',
+    source: 'Instagram',
+    sentiment: 'positive',
+    url: 'https://www.instagram.com/reel/example5/',
+  },
+];
+
+const taggedPosts = [
+  {
+    id: 1,
+    platform: 'Instagram',
+    author: '@paborofficial',
+    handle: 'Puma India',
+    verified: true,
+    text: 'The King wears the crown. @virat.kohli in the new Puma One8 collection. #ForeverFaster #One8',
+    image: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=400',
+    likes: 245000,
+    comments: 3420,
+    timestamp: '2h ago',
+    sentiment: 'positive',
+    url: 'https://www.instagram.com/p/tagged1/',
+  },
+  {
+    id: 2,
+    platform: 'X',
+    author: '@BCCI',
+    handle: 'BCCI',
+    verified: true,
+    text: 'What a knock by @imVkohli! 💯 Another masterclass in chasing. #INDvAUS #TeamIndia',
+    image: null,
+    likes: 89000,
+    comments: 5600,
+    retweets: 12400,
+    timestamp: '4h ago',
+    sentiment: 'positive',
+    url: 'https://x.com/BCCI/status/tagged1',
+  },
+  {
+    id: 3,
+    platform: 'Instagram',
+    author: '@audiin',
+    handle: 'Audi India',
+    verified: true,
+    text: 'Driven by excellence. @virat.kohli takes the new Audi Q8 for a spin. #AudiIndia #ProgressYouCanFeel',
+    image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400',
+    likes: 156000,
+    comments: 2100,
+    timestamp: '1d ago',
+    sentiment: 'positive',
+    url: 'https://www.instagram.com/p/tagged2/',
+  },
+  {
+    id: 4,
+    platform: 'X',
+    author: '@ESPNcricinfo',
+    handle: 'ESPNcricinfo',
+    verified: true,
+    text: 'Stats thread: @imVkohli now has the most centuries in successful run chases in ODI history 🏏📊',
+    image: null,
+    likes: 45000,
+    comments: 2300,
+    retweets: 8900,
+    timestamp: '6h ago',
+    sentiment: 'positive',
+    url: 'https://x.com/ESPNcricinfo/status/tagged2',
+  },
+  {
+    id: 5,
+    platform: 'Instagram',
+    author: '@maborwrongn',
+    handle: 'WROGN',
+    verified: true,
+    text: 'Style that speaks volumes. @virat.kohli rocking the new WROGN summer collection. #StayWROGN',
+    image: 'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?w=400',
+    likes: 98000,
+    comments: 1540,
+    timestamp: '2d ago',
+    sentiment: 'positive',
+    url: 'https://www.instagram.com/p/tagged3/',
+  },
+  {
+    id: 6,
+    platform: 'X',
+    author: '@cricaboruzz',
+    handle: 'Cricbuzz',
+    verified: true,
+    text: 'Controversial take: Is @imVkohli being too aggressive with the umpires? The debate continues... #Cricket',
+    image: null,
+    likes: 12000,
+    comments: 4500,
+    retweets: 3200,
+    timestamp: '8h ago',
+    sentiment: 'negative',
+    url: 'https://x.com/cricbuzz/status/tagged3',
+  },
+  {
+    id: 7,
+    platform: 'Instagram',
+    author: '@anaborshkasharma',
+    handle: 'Anushka Sharma',
+    verified: true,
+    text: 'My forever cheerleader 💕 @virat.kohli #Family #Love',
+    image: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=400',
+    likes: 2450000,
+    comments: 34200,
+    timestamp: '3d ago',
+    sentiment: 'positive',
+    url: 'https://www.instagram.com/p/tagged4/',
+  },
+  {
+    id: 8,
+    platform: 'X',
+    author: '@iaborSunilGavaskar',
+    handle: 'Sunil Gavaskar',
+    verified: true,
+    text: 'Watching @imVkohli bat is poetry in motion. The dedication, the focus, the hunger - simply unmatched. #Legend',
+    image: null,
+    likes: 67000,
+    comments: 1890,
+    retweets: 9800,
+    timestamp: '12h ago',
+    sentiment: 'positive',
+    url: 'https://x.com/SunilGavaskar/status/tagged4',
+  },
 ];
 
 const trendingHashtagsToday = ['#KingKohli', '#INDvAUS', '#RunMachine', '#ViratKohli'];
@@ -1268,6 +1422,265 @@ export default function App() {
                           Open on {v.source} →
                         </a>
                       )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Tagged Posts Section */}
+          <section style={{ marginTop: 40, marginBottom: 40 }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: 16,
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: '1.15rem',
+                  fontWeight: 700,
+                  margin: 0,
+                }}
+              >
+                Tagged Posts on Instagram & X
+              </h3>
+              <div style={{ display: 'flex', gap: 8 }}>
+                <span
+                  style={{
+                    padding: '4px 10px',
+                    borderRadius: 9999,
+                    backgroundColor: '#E1306C',
+                    color: '#fff',
+                    fontSize: 11,
+                    fontWeight: 600,
+                  }}
+                >
+                  Instagram
+                </span>
+                <span
+                  style={{
+                    padding: '4px 10px',
+                    borderRadius: 9999,
+                    backgroundColor: '#000',
+                    color: '#fff',
+                    fontSize: 11,
+                    fontWeight: 600,
+                  }}
+                >
+                  X
+                </span>
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                gap: 16,
+              }}
+            >
+              {taggedPosts.map((post) => {
+                const isInstagram = post.platform === 'Instagram';
+                const platformColor = isInstagram ? '#E1306C' : '#000';
+                const platformBg = isInstagram ? '#fce7f3' : '#f3f4f6';
+                const sentimentColor =
+                  post.sentiment === 'positive'
+                    ? '#16a34a'
+                    : post.sentiment === 'negative'
+                    ? '#dc2626'
+                    : '#ca8a04';
+                const sentimentBg =
+                  post.sentiment === 'positive'
+                    ? '#dcfce7'
+                    : post.sentiment === 'negative'
+                    ? '#fee2e2'
+                    : '#fef9c3';
+
+                return (
+                  <div
+                    key={post.id}
+                    style={{
+                      background: '#ffffff',
+                      borderRadius: 12,
+                      border: '1px solid #e5e7eb',
+                      overflow: 'hidden',
+                      boxShadow: '0 4px 10px rgba(0,0,0,0.04)',
+                    }}
+                  >
+                    {post.image && (
+                      <div
+                        style={{
+                          height: 160,
+                          background: `url(${post.image}) center/cover`,
+                          position: 'relative',
+                        }}
+                      >
+                        <span
+                          style={{
+                            position: 'absolute',
+                            top: 10,
+                            left: 10,
+                            padding: '4px 10px',
+                            borderRadius: 9999,
+                            backgroundColor: platformColor,
+                            color: '#fff',
+                            fontSize: 11,
+                            fontWeight: 600,
+                          }}
+                        >
+                          {post.platform}
+                        </span>
+                      </div>
+                    )}
+                    <div style={{ padding: 14 }}>
+                      {!post.image && (
+                        <div
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            marginBottom: 8,
+                          }}
+                        >
+                          <span
+                            style={{
+                              padding: '4px 10px',
+                              borderRadius: 9999,
+                              backgroundColor: platformBg,
+                              color: platformColor,
+                              fontSize: 11,
+                              fontWeight: 600,
+                            }}
+                          >
+                            {post.platform}
+                          </span>
+                          <span
+                            style={{
+                              padding: '2px 8px',
+                              borderRadius: 9999,
+                              background: sentimentBg,
+                              color: sentimentColor,
+                              fontSize: 11,
+                              fontWeight: 600,
+                            }}
+                          >
+                            {post.sentiment.charAt(0).toUpperCase() + post.sentiment.slice(1)}
+                          </span>
+                        </div>
+                      )}
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 8,
+                          marginBottom: 8,
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: 36,
+                            height: 36,
+                            borderRadius: '50%',
+                            background: isInstagram
+                              ? 'linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)'
+                              : '#000',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#fff',
+                            fontSize: 14,
+                            fontWeight: 700,
+                          }}
+                        >
+                          {post.handle.charAt(0)}
+                        </div>
+                        <div>
+                          <div
+                            style={{
+                              fontSize: 13,
+                              fontWeight: 600,
+                              color: '#111827',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 4,
+                            }}
+                          >
+                            {post.handle}
+                            {post.verified && (
+                              <span
+                                style={{
+                                  color: '#3b82f6',
+                                  fontSize: 12,
+                                }}
+                              >
+                                ✓
+                              </span>
+                            )}
+                          </div>
+                          <div style={{ fontSize: 11, color: '#6b7280' }}>
+                            {post.author} · {post.timestamp}
+                          </div>
+                        </div>
+                      </div>
+                      <p
+                        style={{
+                          fontSize: 13,
+                          color: '#374151',
+                          marginBottom: 12,
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        {post.text}
+                      </p>
+                      <div
+                        style={{
+                          display: 'flex',
+                          gap: 16,
+                          fontSize: 12,
+                          color: '#6b7280',
+                          marginBottom: 10,
+                          flexWrap: 'wrap',
+                        }}
+                      >
+                        <span>❤️ {post.likes.toLocaleString()}</span>
+                        <span>💬 {post.comments.toLocaleString()}</span>
+                        {post.retweets && <span>🔁 {post.retweets.toLocaleString()}</span>}
+                      </div>
+                      {post.image && (
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            padding: '2px 8px',
+                            borderRadius: 9999,
+                            background: sentimentBg,
+                            color: sentimentColor,
+                            fontSize: 11,
+                            fontWeight: 600,
+                            marginBottom: 10,
+                          }}
+                        >
+                          {post.sentiment.charAt(0).toUpperCase() + post.sentiment.slice(1)}
+                        </span>
+                      )}
+                      <div>
+                        <a
+                          href={post.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            fontSize: 12,
+                            color: platformColor,
+                            textDecoration: 'none',
+                            fontWeight: 500,
+                          }}
+                        >
+                          View on {post.platform} →
+                        </a>
+                      </div>
                     </div>
                   </div>
                 );
