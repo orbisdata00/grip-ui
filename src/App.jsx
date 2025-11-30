@@ -442,7 +442,7 @@ function CelebrityCard({ celeb, onOpenDashboard, disabled }) {
       <img
         src={celeb.image}
         alt={celeb.name}
-        style={{ width: '100%', height: 220, objectFit: 'cover' }}
+        className="celebrity-card-image"
       />
       <div style={{ padding: 16 }}>
         <h2
@@ -645,6 +645,7 @@ export default function App() {
         >
           {/* Critical message about TOI article */}
           <div
+            className="critical-alert"
             style={{
               padding: 12,
               borderRadius: 12,
@@ -652,10 +653,6 @@ export default function App() {
               border: '1px solid #fecaca',
               color: '#991b1b',
               fontSize: 13,
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'flex-start',
-              gap: 12,
             }}
           >
             <div>
@@ -685,15 +682,12 @@ export default function App() {
 
           {/* Compact hero row with small icon instead of big banner */}
           <div
+            className="dashboard-hero-row"
             style={{
               marginTop: 16,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 16,
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div className="dashboard-hero-left">
               <img
                 src={selectedCelebrity.image}
                 alt={selectedCelebrity.name}
@@ -725,7 +719,7 @@ export default function App() {
                 </div>
               </div>
             </div>
-            <div style={{ textAlign: 'right' }}>
+            <div className="dashboard-hero-right">
               <div
                 style={{
                   fontSize: 11,
@@ -917,11 +911,9 @@ export default function App() {
 
           {/* Sentiment widgets */}
           <div
+            className="sentiment-stats-row"
             style={{
-              display: 'flex',
-              gap: 16,
               marginTop: 24,
-              flexWrap: 'wrap',
             }}
           >
             {[
@@ -931,11 +923,9 @@ export default function App() {
             ].map((item) => (
               <div
                 key={item.label}
+                className="sentiment-stat-card"
                 style={{
-                  flex: '1 1 200px',
                   backgroundColor: item.bg,
-                  borderRadius: 12,
-                  padding: 16,
                   border: `1px solid ${item.color}55`,
                 }}
               >
@@ -973,14 +963,7 @@ export default function App() {
 
           {/* 7‑Day Trend Chart (enhanced multi-line chart) */}
           <div style={{ marginTop: 40 }}>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: 16,
-              }}
-            >
+            <div className="chart-header">
               <h3
                 style={{
                   fontSize: '1.15rem',
@@ -990,16 +973,16 @@ export default function App() {
               >
                 Sentiment Trend — Last 7 Days
               </h3>
-              <div style={{ display: 'flex', gap: 16, fontSize: 12 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <div className="chart-legend">
+                <div className="chart-legend-item">
                   <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#16a34a' }} />
                   <span style={{ color: '#374151' }}>Positive</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <div className="chart-legend-item">
                   <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#ca8a04' }} />
                   <span style={{ color: '#374151' }}>Neutral</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <div className="chart-legend-item">
                   <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#dc2626' }} />
                   <span style={{ color: '#374151' }}>Negative</span>
                 </div>
@@ -1206,28 +1189,20 @@ export default function App() {
                     </div>
                     
                     {/* Summary stats */}
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-around',
-                        marginTop: 20,
-                        paddingTop: 16,
-                        borderTop: '1px solid #e5e7eb',
-                      }}
-                    >
-                      <div style={{ textAlign: 'center' }}>
+                    <div className="chart-summary-stats">
+                      <div className="chart-summary-stat">
                         <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 4 }}>Weekly Avg</div>
                         <div style={{ fontSize: 18, fontWeight: 700, color: '#16a34a' }}>
                           {Math.round(positiveData.reduce((a, b) => a + b, 0) / positiveData.length)}%
                         </div>
                         <div style={{ fontSize: 10, color: '#16a34a' }}>Positive</div>
                       </div>
-                      <div style={{ textAlign: 'center' }}>
+                      <div className="chart-summary-stat">
                         <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 4 }}>Peak Day</div>
                         <div style={{ fontSize: 18, fontWeight: 700, color: '#3b82f6' }}>Friday</div>
                         <div style={{ fontSize: 10, color: '#3b82f6' }}>78% positive</div>
                       </div>
-                      <div style={{ textAlign: 'center' }}>
+                      <div className="chart-summary-stat">
                         <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 4 }}>Trend</div>
                         <div style={{ fontSize: 18, fontWeight: 700, color: '#16a34a', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
                           <span>↑</span> +4%
@@ -1243,18 +1218,12 @@ export default function App() {
 
           {/* Recent Mentions – Filters */}
           <section style={{ marginTop: 40 }}>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginBottom: 12,
-              }}
-            >
+            <div className="mentions-header">
               <h3
                 style={{
                   fontSize: '1.15rem',
                   fontWeight: 700,
+                  margin: 0,
                 }}
               >
                 Recent Mentions
@@ -1319,12 +1288,7 @@ export default function App() {
             </div>
 
             {/* Masonry grid for mentions */}
-            <div
-              style={{
-                columnCount: 2,
-                columnGap: 16,
-              }}
-            >
+            <div className="mentions-grid">
               {visibleMentionsList.map((m) => {
                 const sentimentColor =
                   m.sentiment === 'positive'
@@ -1487,12 +1451,7 @@ export default function App() {
               </div>
             </div>
 
-            <div
-              style={{
-                columnCount: 2,
-                columnGap: 16,
-              }}
-            >
+            <div className="videos-grid">
               {sampleVideos.map((v) => {
                 const isMp4 = v.url.includes('.mp4');
                 const sentimentColor =
@@ -1693,13 +1652,7 @@ export default function App() {
               </div>
             </div>
 
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                gap: 16,
-              }}
-            >
+            <div className="tagged-posts-grid" style={{ display: 'grid', gap: 16 }}>
               {taggedPosts.map((post) => {
                 const isInstagram = post.platform === 'Instagram';
                 const platformColor = isInstagram ? '#E1306C' : '#000';
@@ -2045,13 +1998,11 @@ export default function App() {
       }}
     >
       <header
+        className="header"
         style={{
           background: 'linear-gradient(to right, #f97316, #ea580c)',
           color: '#ffffff',
           padding: '14px 24px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
           boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
         }}
       >
@@ -2070,7 +2021,7 @@ export default function App() {
             Celebrity Reputation Command Center
           </p>
         </div>
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div className="header-buttons">
           <button
             type="button"
             onClick={goToComparison}
@@ -2137,13 +2088,7 @@ export default function App() {
           Click a card to open their reputation dashboard.
         </p>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: 20,
-          }}
-        >
+        <div className="celebrity-grid">
           {celebrities.map((celeb) => (
             <CelebrityCard
               key={celeb.name}
